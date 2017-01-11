@@ -1,0 +1,18 @@
+include "global.tbh"
+
+'====================================================================
+sub on_sys_init()
+	#if NET_AVAILABLE
+		dhcp_start(PL_SOCK_INTERFACE_NET,"","")
+	#endif
+end sub
+
+'--------------------------------------------------------------------
+sub on_sys_timer()
+	dhcp_proc_timer()
+end sub
+
+'--------------------------------------------------------------------
+sub on_sock_data_arrival()
+	dhcp_proc_data()
+end sub

@@ -1,0 +1,7 @@
+>>IPN	E	D	1	4	4	A	0.0.0.0	Ethernet IP
+>>IPW	E	D	1	4	4	A	0.0.0.0	Wi-Fi IP
+
+#define STG_DESCRIPTOR_FILE "settings.txt"
+#define STG_MAX_NUM_SETTINGS 2
+#define STG_MAX_SETTING_NAME_LEN 3
+#define STG_MAX_SETTING_VALUE_LEN 15
