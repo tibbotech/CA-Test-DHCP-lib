@@ -1,5 +1,11 @@
-# CA-Test-DHCP-lib
+# DHCP Library Demo
 
-To download the most recent project without installing GIT, please press the green "Clone or Download" button and select "Download ZIP".
+This download contains four separate demo projects, corresponding to those described in the DHCP library [documentation](http://docs.tibbo.com/taiko/lib_dhcp.htm):
 
-For more detail about this project, please visit <a href="http://tibbo.com/programmable/applications/examples/lib_dhcp.html" target="_blank">Project Description Page</a>
+- [Step 1: Code Example for the Ethernet Interface](http://docs.tibbo.com/taiko/lib_dhcp_code_example_ethernet.htm)
+- [Step 2: Code Example for the Wi-Fi Interface](http://docs.tibbo.com/taiko/lib_dhcp_code_example_wln.htm)
+- [Step 3: Adding Bells and Whistles](http://docs.tibbo.com/taiko/lib_dhcp_code_example_extra_1.htm)
+- [Step 4: Adding More Bells and Whistles](http://docs.tibbo.com/taiko/lib_dhcp_code_example_extra_2.htm)
+
+You can download a [ZIP containing all the steps](http://tibbo.com/downloads/open/taiko_test_dhcp_lib.zip) to easily follow along with the manual.
+

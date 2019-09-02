@@ -1,5 +1,6 @@
 'DEFINES-------------------------------------------------------------
 #define DHCP_DEBUG_PRINT 1 'to see debug output by the DHCP lib
+#define WLN_AVAILABLE 0
 
 'INCLUDES------------------------------------------------------------
 include "sock\trunk\sock.tbh" 'this lib is necessary for the DHCP lib's operation

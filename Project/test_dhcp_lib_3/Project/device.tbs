@@ -1,5 +1,23 @@
 include "global.tbh"
 
+'--------------------------------------------------------------------
+const DHCP_FAIL_LIMIT=1 'max number of DHCP retry "batches"
+const ALT_NET_IP="192.168.1.40"
+const ALT_NET_GATEWAY_IP="192.168.1.1"
+const ALT_NET_NETMASK="255.255.255.0"
+const ALT_WLN_IP="192.168.1.41"
+const ALT_WLN_GATEWAY_IP="192.168.1.1"
+const ALT_WLN_NETMASK="255.255.255.0"
+
+'--------------------------------------------------------------------
+#if NET_AVAILABLE
+	dim net_dhcp_fail_ctr as byte 'no need to init to 0 (this is automatic for global vars)
+#endif
+
+#if WLN_AVAILABLE
+	dim wln_dhcp_fail_ctr as byte 'no need to init to 0 (this is automatic for global vars)
+#endif
+
 '====================================================================
 sub callback_dhcp_ok(renew as no_yes, interface as pl_sock_interfaces, byref ip as string, byref gateway_ip as string, byref netmask as string, lease_time as dword)
 	dim f as byte
@@ -19,6 +37,7 @@ sub callback_dhcp_ok(renew as no_yes, interface as pl_sock_interfaces, byref ip 
 				net.ip=ip
 				net.gatewayip=gateway_ip
 				net.netmask=netmask
+				net_dhcp_fail_ctr=0
 			end if
 		end if
 	#endif
@@ -38,6 +57,7 @@ sub callback_dhcp_ok(renew as no_yes, interface as pl_sock_interfaces, byref ip 
 				wln.ip=ip
 				wln.gatewayip=gateway_ip
 				wln.netmask=netmask
+				wln_dhcp_fail_ctr=0
 			end if
 		end if
 	#endif
@@ -45,6 +65,31 @@ end sub
 
 '--------------------------------------------------------------------
 sub callback_dhcp_failure(interface as pl_sock_interfaces,failure_code as en_dhcp_status_codes)
+	#if NET_AVAILABLE
+		if interface=PL_SOCK_INTERFACE_NET then
+			if net_dhcp_fail_ctr>=DHCP_FAIL_LIMIT then
+				net.ip=ALT_NET_IP
+				net.gatewayip=ALT_NET_GATEWAY_IP
+				net.netmask=ALT_NET_NETMASK
+				dhcp_stop(PL_SOCK_INTERFACE_NET)
+			else
+				net_dhcp_fail_ctr=net_dhcp_fail_ctr+1
+			end if
+		end if
+	#endif
+
+	#if WLN_AVAILABLE
+		if interface=PL_SOCK_INTERFACE_WLN then
+			if wln_dhcp_fail_ctr>=DHCP_FAIL_LIMIT then
+				wln.ip=ALT_WLN_IP
+				wln.gatewayip=ALT_WLN_GATEWAY_IP
+				wln.netmask=ALT_WLN_NETMASK
+				dhcp_stop(PL_SOCK_INTERFACE_WLN)
+			else
+				wln_dhcp_fail_ctr=wln_dhcp_fail_ctr+1
+			end if
+		end if
+	#endif
 end sub
 
 '--------------------------------------------------------------------
@@ -81,4 +126,21 @@ end sub
 #if WLN_AVAILABLE
 sub callback_wln_rescan_result(current_rssi as byte, scan_rssi as byte, different_ap as no_yes)
 end sub
+#endif
+
+
+
+
+
+
+
+
+'--------------------------------------------------------------------
+#if WLN_AVAILABLE
+sub callback_wln_starting_association()
+end sub
+
+sub callback_wln_rescan_for_better_ap()
+end sub
+
 #endif

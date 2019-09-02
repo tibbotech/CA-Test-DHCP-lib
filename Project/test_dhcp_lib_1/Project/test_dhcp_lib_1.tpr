@@ -1,0 +1,106 @@
+[project]
+version = 1
+platform = EM2000W
+src_lib_ver = 2_01_03
+name = test_dhcp_lib_1
+output = test_dhcp_lib_1.tpc
+debug = on
+defines = /dWLN_AVAILABLE=0
+transport = udp_broadcast
+
+[address1]
+platform = TPP3W(G2)
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address2]
+platform = EM2000W
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address3]
+platform = EM510W
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address4]
+platform = TPP2N
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address5]
+platform = EM500W
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address6]
+platform = EM1000N
+transport = udp_broadcast
+address = 0.9.5.2.7.6
+
+[address7]
+platform = EM2000W
+transport = udp_broadcast
+address = 0.9.5.2.7.6
+
+[address8]
+platform = em203
+transport = udp_broadcast
+address = 
+
+[file1]
+path = main.tbs
+type = basic
+format = 
+condition = 
+locked = no
+location = 
+
+[file2]
+path = global.tbh
+type = header
+format = 
+condition = 
+locked = no
+location = 
+
+[file3]
+path = device.tbs
+type = basic
+format = 
+condition = 
+locked = no
+location = 
+
+[file4]
+path = dhcp\trunk\dhcp.tbs
+type = basic
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file5]
+path = dhcp\trunk\dhcp.tbh
+type = header
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file6]
+path = sock\trunk\sock.tbs
+type = basic
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file7]
+path = sock\trunk\sock.tbh
+type = header
+format = 
+condition = 
+locked = yes
+location = commonlib
+
