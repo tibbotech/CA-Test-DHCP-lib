@@ -1,0 +1,110 @@
+[project]
+version = 1
+platform = TPP3W(G2)
+src_lib_ver = 2_01_03
+name = test_dhcp_lib_2
+output = test_dhcp_lib_2.tpc
+debug = on
+defines = /dLCD_TYPE=SOLOMON_SSD1305 /dOBJECT_LCD=LCD_ENABLED /dOBJECT_FD=FD_ENABLED /dOBJECT_KP=KP_ENABLED /dOBJECT_WLN=WLN_ENABLED
+transport = udp_winpcap
+
+[address1]
+platform = TPP3W(G2)
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address2]
+platform = DS1101N
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address3]
+platform = DS1202
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[address4]
+platform = EM1202N
+transport = udp_winpcap
+address = 0.9.5.2.7.6
+
+[file1]
+path = main.tbs
+type = basic
+format = 
+condition = 
+locked = no
+location = 
+
+[file2]
+path = global.tbh
+type = header
+format = 
+condition = 
+locked = no
+location = 
+
+[file3]
+path = device.tbs
+type = basic
+format = 
+condition = 
+locked = no
+location = 
+
+[file4]
+path = dhcp\trunk\dhcp.tbh
+type = header
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file5]
+path = sock\trunk\sock.tbs
+type = basic
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file6]
+path = sock\trunk\sock.tbh
+type = header
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file7]
+path = wln\trunk\wln.tbs
+type = basic
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file8]
+path = wln\trunk\wln.tbh
+type = header
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file9]
+path = dhcp\trunk\dhcp.tbs
+type = basic
+format = 
+condition = 
+locked = yes
+location = commonlib
+
+[file10]
+path = ga1000fw.bin
+type = binary
+format = 
+condition = 
+locked = no
+location = project
+
