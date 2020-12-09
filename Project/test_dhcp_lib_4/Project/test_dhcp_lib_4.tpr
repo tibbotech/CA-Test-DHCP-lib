@@ -1,7 +1,7 @@
 [project]
 version = 1
-platform = EM1001N
-src_lib_ver = 2_01_03
+platform = TPP3W(G2)
+src_lib_ver = 2_01_04
 name = test_dhcp_lib_4
 output = test_dhcp_lib_4.tpc
 debug = on
